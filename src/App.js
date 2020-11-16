@@ -24,6 +24,12 @@ const useStyles = makeStyles(() => ({
   button: {
     height: '55.98px',
   },
+  message: {
+    color: 'red',
+  },
+  reply: {
+    color: 'green',
+  },
 }));
 
 function App() {
@@ -57,7 +63,7 @@ function App() {
         'type': 'message',
         'content': message,
       }, {
-        'type': reply,
+        'type': 'reply',
         'content': reply,
       }])
     } catch (e) {
@@ -77,7 +83,7 @@ function App() {
       <header className="App-header">
         <h1>Dental Clinic Chatbot</h1>
         {messages.map((item, index) => (
-          <div key={index}>
+          <div key={index} className={item.type === 'message' ? classes.message : classes.reply}>
             {item.content}
           </div>
         ))}
