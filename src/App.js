@@ -84,6 +84,9 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (message === '') {
+      return;
+    }
     let reply = getReply();
     console.log(`got1 `, reply);
   }
