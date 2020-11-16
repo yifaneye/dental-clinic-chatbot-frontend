@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
   },
   messageBox: {
-    borderRadius: '10px',
+    borderRadius: '20px',
     marginBottom: '10px',
     padding: '5px 20px',
   },
@@ -44,11 +44,13 @@ const useStyles = makeStyles(() => ({
     alignSelf: 'flex-end',
     background: '#3f51b5',
     color: 'white',
+    borderBottomRightRadius: '2px',
   },
   reply: {
     alignSelf: 'flex-start',
     background: '#eee',
     color: 'black',
+    borderBottomLeftRadius: '2px',
   },
 }));
 
