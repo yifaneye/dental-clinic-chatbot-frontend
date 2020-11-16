@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import './App.css';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -25,6 +25,15 @@ const useStyles = makeStyles(() => ({
   },
   button: {
     height: '55.98px',
+  },
+  messagesContainer: {
+    width: '100%',
+    maxHeight: 'calc(80vh - 150px)',
+    overflow: 'auto',
+  },
+  messagesWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   messageBox: {
     borderRadius: '10px',
@@ -91,16 +100,34 @@ function App() {
     console.log(`got1 `, reply);
   }
 
+  const messageRef = useRef();
+
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'nearest'
+        })
+    }
+  }, [messages]);
+
   const {form, inputWrapper, buttonWrapper, input, button} = classes;
   return (
     <div className="App">
       <header className="App-header">
         <h1>Dental Clinic Chatbot</h1>
-        {messages.map((item, index) => (
-          <div key={index} className={`${classes.messageBox} ${item.type === 'message' ? classes.message : classes.reply}`}>
-            {item.content}
+        <div className={classes.messagesContainer}>
+          <div className={classes.messagesWrapper}>
+            {messages.map((item, index) => (
+              <div key={index} ref={messageRef}
+                   className={`${classes.messageBox} ${item.type === 'message' ? classes.message : classes.reply}`}>
+                {item.content}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
         <form onSubmit={handleSubmit} className={form} noValidate>
           <Grid
             container
