@@ -29,18 +29,21 @@ const useStyles = makeStyles(() => ({
   messagesContainer: {
     width: '100%',
     maxHeight: 'calc(80vh - 150px)',
-    overflow: 'auto',
+    overflowX: 'hidden',
+    overflowY: 'auto',
   },
   messagesWrapper: {
     display: 'flex',
     flexDirection: 'column',
   },
   messageBox: {
+    textAlign: 'left',
     borderRadius: '20px',
     marginBottom: '10px',
     padding: '5px 20px',
   },
   message: {
+    maxWidth: '80%',
     alignSelf: 'flex-end',
     background: '#3f51b5',
     color: 'white',
