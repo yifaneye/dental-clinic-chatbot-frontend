@@ -62,17 +62,9 @@ function App() {
 
   const initialMessages = [
     {
-      'type': 'message',
-      'content': '1',
-    },
-    {
       'type': 'reply',
-      'content': '2',
+      'content': 'Hi, I am Dental Chatbot. How can I help you?',
     },
-    {
-      'type': 'message',
-      'content': '3',
-    }
   ];
   const [messages, setMessages] = useState(initialMessages);
   const [message, setMessage] = useState('');
