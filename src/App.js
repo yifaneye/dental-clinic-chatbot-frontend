@@ -46,6 +46,7 @@ function App() {
   };
 
   function handleSubmit(event) {
+    setMessage('');
     event.preventDefault();
     let reply = getReply();
     console.log(`got1 `, reply);
