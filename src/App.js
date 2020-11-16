@@ -29,6 +29,7 @@ const useStyles = makeStyles(() => ({
 function App() {
   const classes = useStyles();
 
+  const [messages, setMessages] = React.useState(['one', 'two', 'three']);
   const [message, setMessage] = useState('');
 
   const CHATBOT_URL = 'http://127.0.0.1:5000/v1/chat?message=';
@@ -38,6 +39,7 @@ function App() {
       const res = await axios.get(`${CHATBOT_URL}${message}`);
       const reply = res.data['reply'];
       console.log(`got2 ${reply}`,);
+      setMessages([...messages, reply])
     } catch (e) {
       console.error(e);
     }
@@ -54,6 +56,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Dental Clinic Chatbot</h1>
+        {messages.map((item, index) => (
+          <div key={index}>
+            {item}
+          </div>
+        ))}
         <form onSubmit={handleSubmit} className={form} noValidate>
           <Grid
             container
