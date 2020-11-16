@@ -1,17 +1,15 @@
 .App {
   text-align: center;
-  background-color: #eee;
+  background-color: #aaa;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title {
+  width: 100%;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #aaa;
 }
 
 .App-header {
@@ -24,8 +22,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  font-size: calc(10px + 2vmin);
-  padding: 0 10%;
+  font-size: 20px;
+  padding: 0 1%;
 }
 
 .App-link {

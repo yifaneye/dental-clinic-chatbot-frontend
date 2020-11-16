@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
   },
   messagesContainer: {
     width: '100%',
-    maxHeight: 'calc(80vh - 150px)',
+    maxHeight: 'calc(100vh - 200px)',
     overflowX: 'hidden',
     overflowY: 'auto',
   },
@@ -122,7 +122,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Dental Clinic Chatbot</h1>
+        <div className="title">
+          <div>Dental Chatbot</div>
+        </div>
         <div className={classes.messagesContainer}>
           <div className={classes.messagesWrapper}>
             {messages.map((item, index) => (
