@@ -29,24 +29,43 @@ const useStyles = makeStyles(() => ({
 function App() {
   const classes = useStyles();
 
-  const [messages, setMessages] = React.useState(['one', 'two', 'three']);
+  const initialMessages = [
+    {
+      'type': 'message',
+      'content': '1',
+    },
+    {
+      'type': 'reply',
+      'content': '2',
+    },
+    {
+      'type': 'message',
+      'content': '3',
+    }
+  ];
+  const [messages, setMessages] = useState(initialMessages);
   const [message, setMessage] = useState('');
 
   const CHATBOT_URL = 'http://127.0.0.1:5000/v1/chat?message=';
 
   const getReply = async () => {
     try {
+      console.log(messages);
       const res = await axios.get(`${CHATBOT_URL}${message}`);
       const reply = res.data['reply'];
-      console.log(`got2 ${reply}`,);
-      setMessages([...messages, reply])
+      setMessages([...messages, {
+        'type': 'message',
+        'content': message,
+      }, {
+        'type': reply,
+        'content': reply,
+      }])
     } catch (e) {
       console.error(e);
     }
   };
 
   function handleSubmit(event) {
-    setMessage('');
     event.preventDefault();
     let reply = getReply();
     console.log(`got1 `, reply);
@@ -59,7 +78,7 @@ function App() {
         <h1>Dental Clinic Chatbot</h1>
         {messages.map((item, index) => (
           <div key={index}>
-            {item}
+            {item.content}
           </div>
         ))}
         <form onSubmit={handleSubmit} className={form} noValidate>
