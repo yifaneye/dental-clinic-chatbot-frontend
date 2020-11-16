@@ -15,6 +15,7 @@
 }
 
 .App-header {
+  position: relative;
   background-color: #fff;
   min-height: 100vh;
   max-width: 960px;
@@ -24,6 +25,7 @@
   align-items: center;
   justify-content: start;
   font-size: calc(10px + 2vmin);
+  padding: 0 10%;
 }
 
 .App-link {

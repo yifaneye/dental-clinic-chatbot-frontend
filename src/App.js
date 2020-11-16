@@ -8,6 +8,8 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(() => ({
   form: {
+    position: 'absolute',
+    bottom: '20px',
     width: '80%',
   },
   inputWrapper: {
@@ -24,11 +26,20 @@ const useStyles = makeStyles(() => ({
   button: {
     height: '55.98px',
   },
+  messageBox: {
+    borderRadius: '10px',
+    marginBottom: '10px',
+    padding: '5px 20px',
+  },
   message: {
-    color: 'red',
+    alignSelf: 'flex-end',
+    background: '#3f51b5',
+    color: 'white',
   },
   reply: {
-    color: 'green',
+    alignSelf: 'flex-start',
+    background: '#eee',
+    color: 'black',
   },
 }));
 
@@ -83,7 +94,7 @@ function App() {
       <header className="App-header">
         <h1>Dental Clinic Chatbot</h1>
         {messages.map((item, index) => (
-          <div key={index} className={item.type === 'message' ? classes.message : classes.reply}>
+          <div key={index} className={`${classes.messageBox} ${item.type === 'message' ? classes.message : classes.reply}`}>
             {item.content}
           </div>
         ))}
