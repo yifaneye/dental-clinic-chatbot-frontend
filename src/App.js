@@ -94,6 +94,7 @@ function App() {
       return;
     }
     let reply = getReply();
+    setMessage('');
     console.log(`got1 `, reply);
   }
 
