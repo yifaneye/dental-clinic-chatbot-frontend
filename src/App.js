@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
+import { useDynamicList } from 'ahooks';
 import './App.css';
 import axios from 'axios';
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -65,7 +66,8 @@ function App() {
       'content': 'Hi, I am Dental Chatbot. How can I help you?',
     },
   ];
-  const [messages, setMessages] = useState(initialMessages);
+
+  const { list: messages, push: pushMessage } = useDynamicList(initialMessages);
   const [message, setMessage] = useState('');
 
   const CHATBOT_URL = 'http://127.0.0.1:5000/v1/chat?message=';
@@ -75,13 +77,10 @@ function App() {
       console.log(messages);
       const res = await axios.get(`${CHATBOT_URL}${message}`);
       const reply = res.data['reply'];
-      setMessages([...messages, {
-        'type': 'message',
-        'content': message,
-      }, {
+      pushMessage({
         'type': 'reply',
         'content': reply,
-      }])
+      });
     } catch (e) {
       console.error(e);
     }
@@ -92,6 +91,10 @@ function App() {
     if (message === '') {
       return;
     }
+    pushMessage({
+      'type': 'message',
+      'content': message,
+    });
     let reply = getReply();
     setMessage('');
     console.log(`got1 `, reply);
