@@ -1,10 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import './App.css';
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import axios from 'axios';
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Grid from "@material-ui/core/Grid";
+import {ChatInput} from "./ChatInput";
+import {ChatText} from "./ChatText";
 
 const useStyles = makeStyles(() => ({
   form: {
@@ -118,52 +117,15 @@ function App() {
         <div className="title">
           <div>Dental Chatbot</div>
         </div>
-        <div className={classes.messagesContainer}>
-          <div className={classes.messagesWrapper}>
-            {messages.map((item, index) => (
-              <div key={index} ref={messageRef}
-                   className={`${classes.messageBox} ${item.type === 'message' ? classes.message : classes.reply}`}>
-                {item.content}
-              </div>
-            ))}
+        <ChatText classes={classes} messages={messages} callbackfn={(item, index) => (
+          <div key={index} ref={messageRef}
+               className={`${classes.messageBox} ${item.type === 'message' ? classes.message : classes.reply}`}>
+            {item.content}
           </div>
-        </div>
-        <form onSubmit={handleSubmit} className={form} noValidate>
-          <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-            <Grid item className={inputWrapper}>
-              <TextField
-                value={message}
-                onInput={(e) => setMessage(e.target.value)}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="message"
-                label="Enter message here"
-                name="message"
-                autoComplete="message"
-                autoFocus
-                className={input}
-              />
-            </Grid>
-            <Grid item className={buttonWrapper}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={button}
-              >
-                Send
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
+        )}/>
+        <ChatInput onSubmit={handleSubmit} className={form} className1={inputWrapper} value={message}
+                   onInput={(e) => setMessage(e.target.value)} className2={input} className3={buttonWrapper}
+                   className4={button}/>
       </header>
     </div>
   );
