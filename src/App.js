@@ -69,7 +69,7 @@ function App() {
   const [messages, setMessages] = useState(initialMessages);
   const [message, setMessage] = useState('');
 
-  const CHATBOT_URL = 'http://127.0.0.1:5000/v1/chat?message=';
+  const CHATBOT_URL = 'http://0.0.0.0:8085/v1/chat?message=';
 
   const getReply = async () => {
     try {
